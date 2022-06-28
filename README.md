@@ -20,10 +20,45 @@
 - Download Nextcloud
 #### Step 3.1
 - Go to https://nextcloud.com/install/
-- Under **ARCHIVE FILE**, right click and get link
-- 
+- Under **ARCHIVE FILE**, right click and get link from the download file
+### Step 3.2
+- Download nextcloud
+```wget **URL**```
 #### Step 3 - others
 - Check if wget is installed
 ```which wget```
 - If it is not installed
 ```sudo apt install wget```
+### Step 4
+- Setup database
+#### Step 4.1
+- Install mariadb-server
+``` sudo apt install mariadb-server```
+- Check status after installation
+```sudo systemctl status mariadb```
+#### Step 4.2
+- setup database secure installation
+```sudo mysql_secure_installtion```
+- Finish up questions prompt
+#### Step 4.3
+- Access database
+``` sudo mariadb```
+- Create database
+```CREATE DATABASE nextcloud;```
+- Check for database
+```SHOW DATABASES;```
+- Create and grant privileges for application to access
+```GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED BY '**Random Password**'`;```
+```FLUSH PRIVILEGES;```
+- Exit Database
+```exit```
+#### Step 4 - others
+- If mariadb does not automatically startup
+```sudo systemctl enable maria```
+- To start mariadb
+```sudo systemctl start maria```
+### Step 5
+- Install apache
+#### Step 5.1
+- Install all dependencies
+``` ```
