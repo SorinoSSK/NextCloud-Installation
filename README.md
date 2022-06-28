@@ -1,5 +1,5 @@
 # NextCloud-Installation
-### Step 1: 
+### Step 1:
 </br>Adding repositories for php, install only php7.4 or else php 8.0 will also be installed.
 </br>```sudo add-apt-repository ppa:ondrej/php -y```
 #### Step 1.1:
