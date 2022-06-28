@@ -6,6 +6,7 @@
 #### Step 1 - others:
 - Purge php if any other version is installed\
 ```sudo apt-get purge 'php*'```
+***
 ### Step 2:
 - Add server details to your computer
 #### Step 2.1:
@@ -14,6 +15,7 @@
 #### Step 2.2
 - Add  **127.0.1.1**, **server name** or **domain name** and, **nickname**
 ```sudo gedit /etc/hosts```
+***
 ### Step 3 
 - Download Nextcloud
 #### Step 3.1
