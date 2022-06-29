@@ -54,9 +54,9 @@ All credits should be given to their respective creator. This is just a compilat
 ```exit```
 #### Step 4 - others
 - If mariadb does not automatically startup\
-```sudo systemctl enable maria```
+```sudo systemctl enable mariadb```
 - To start mariadb\
-```sudo systemctl start maria```
+```sudo systemctl start mariadb```
 ***
 ### Step 5 Install apache
 #### Step 5.1
