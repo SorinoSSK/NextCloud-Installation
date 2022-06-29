@@ -48,7 +48,7 @@ All credits should be given to their respective creator. This is just a compilat
 - Check for database\
 ```SHOW DATABASES;```
 - Create and grant privileges for application to access\
-```GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED BY '**Random Password**'`;```\
+```GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED BY '**Random Password**';```\
 ```FLUSH PRIVILEGES;```
 - Exit Database\
 ```exit```
