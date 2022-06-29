@@ -194,3 +194,16 @@ https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databa
 ```sudo systemctl status certbot.timer```
 #### Step 3.2: Perform dry run
 ```certbot renew --dry-run```
+### Other MISC
+- To update grub
+```sudo update-grub```
+- chomod, u = user, g = group and, o = other
+```sudo chmod u+r```\
+```sudo chmod u+w```
+```sudo chmod u+x```
+```sudo chmod g+r```\
+```sudo chmod g+w```
+```sudo chmod g+x```
+```sudo chmod o+r```\
+```sudo chmod o+w```
+```sudo chmod o+x```
