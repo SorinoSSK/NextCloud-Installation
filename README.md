@@ -150,4 +150,4 @@ or anywhere else
 #### Step 3 Access fstab and modify
 ```sudo gedit /etc/fstab```
 #### Step 4 Insert details of your harddisk
-```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** defaults,user,auto  0 1```
+```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** ext4 defaults,user,auto  0 1```
