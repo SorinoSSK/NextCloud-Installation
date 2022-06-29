@@ -38,7 +38,7 @@ All credits should be given to their respective creator. This is just a compilat
 ```sudo systemctl status mariadb```
 #### Step 4.2
 - setup database secure installation\
-```sudo mysql_secure_installtion```
+```sudo mysql_secure_installation```
 - Finish up questions prompt
 #### Step 4.3
 - Access database\
