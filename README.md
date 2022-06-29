@@ -151,3 +151,44 @@ or anywhere else
 ```sudo gedit /etc/fstab```
 #### Step 4 Insert details of your harddisk
 ```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** ext4 defaults,user,auto  0 1```
+### Additional Step 3: Exporting and Importing MariaDB
+https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-in-mysql-or-mariadb
+#### Step 1: Exporting database
+- Type the following the in console where\
+1) username is the username of the user that logs into database e.g. "nextcloud" from step 4.3
+2) basebase_name is the name of the database you want to export e.g. "nextcloud" from step 4.3
+3) data-dump.sql Can be any name given.
+```mysqldump -u username -p database_name > data-dump.sql```
+#### Step 1.1: Check if data-dump is created
+```head -n 5 data-dump.sql```
+#### Step 2: Importing database
+- Enter SQL as root
+```sudo mariadb```
+- Create the database
+```CREATE DATABASE **new database name**```
+- Follow Step 4.3 to provide all privileges again.
+- Exit the database
+```exit```
+- Import the data-dump.sql where\
+1) username is the username of the user that logs into database e.g. "nextcloud" from step 4.3
+2) basebase_name is the name of the database you want to export e.g. "nextcloud" from step 4.3
+3) data-dump.sql The name given previously together with it's directory. E.g. "/home/**username**/Downloads/data-dump.sql"
+```-u username -p new_database < data-dump.sql```
+### Additional Step 4: Create certbot with let's encrypt
+#### Step 1: Install Certbot
+```sudo apt update```\
+```sudo apt install certbot python3-certbot-apache```
+#### Step 1.1: Check for installataion
+```certbot --version```
+#### Step 2: Enable firewall
+```sudo ufw status```\
+```sudo ufw enable```\
+```sudo ufw allow 'Apache Full'```\
+#### Step 2.1: Check firewall status
+```sudo ufw status```
+#### Step 3: Get SSL certificate
+```sudo certbot --apache -d **YourDomainName.com** -d YourDomainName.com```
+#### Step 3.1: Verify Certbot
+```sudo systemctl status certbot.timer```
+#### Step 3.2: Perform dry run
+```certbot renew --dry-run```
