@@ -126,7 +126,7 @@
 - Select data folder
 - Link database to the one created previously on Step 4
 ***
-### Additional Steps: For external drive
+### Additional Steps 1: For external drive
 https://www.simplified.guide/linux/disk-mount
 #### Step 1 Check for drive
 ```lsblk```
@@ -139,3 +139,13 @@ https://www.simplified.guide/linux/disk-mount
 ```sudo mount -t ext4 /dev/sda **The directory you just created**```
 #### Step 5 Check if successfully mounted
 ```df -h```
+### Additional Steps 2: Mounting external drive using UUID
+#### Step 1 Check for drive UUID
+```sudo blkid```
+#### Step 2 create directory or folder
+```sudo mkdir /media/**Your username**/**Your file name**```\
+or anywhere else
+#### Step 3 Access fstab and modify
+```sudo gedit /etc/fstab```
+#### Step 3 Insert details of your harddisk
+```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** defaults,user,auto  0 1```
