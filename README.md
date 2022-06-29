@@ -1,4 +1,6 @@
 # NextCloud-Installation
+https://www.youtube.com/watch?v=2OsNGj2n2zc\
+All credits should be given to their respective creator. This is just a compilation guide for my own nextcloud installation.
 ### Step 1 Missing repositories
 - Adding repositories for php
 - Note: install only php7.4 or else php 8.0 will also be installed during apt-get update.\
@@ -147,5 +149,5 @@ https://www.simplified.guide/linux/disk-mount
 or anywhere else
 #### Step 3 Access fstab and modify
 ```sudo gedit /etc/fstab```
-#### Step 3 Insert details of your harddisk
+#### Step 4 Insert details of your harddisk
 ```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** defaults,user,auto  0 1```
