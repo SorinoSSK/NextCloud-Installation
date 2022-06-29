@@ -1,5 +1,5 @@
 # NextCloud-Installation
-https://www.youtube.com/watch?v=2OsNGj2n2zc\
+https://www.youtube.com/watch?v=2OsNGj2n2zc \
 All credits should be given to their respective creator. This is just a compilation guide for my own nextcloud installation.
 ### Step 1 Missing repositories
 - Adding repositories for php
