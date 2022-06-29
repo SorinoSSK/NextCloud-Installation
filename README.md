@@ -150,7 +150,9 @@ or anywhere else
 #### Step 3 Access fstab and modify
 ```sudo gedit /etc/fstab```
 #### Step 4 Insert details of your harddisk
-```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** ext4 defaults,user,auto  0 1```
+```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** ext4 defaults,user,auto  0 1```\
+if your drive contains executable files, add in exec to prevent permission denied.\
+```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** ext4 defaults,user,auto,exec  0 1```\
 ### Additional Step 3: Exporting and Importing MariaDB
 https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-in-mysql-or-mariadb
 #### Step 1: Exporting database
