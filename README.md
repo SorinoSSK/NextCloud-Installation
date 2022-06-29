@@ -183,7 +183,7 @@ https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databa
 #### Step 2: Enable firewall
 ```sudo ufw status```\
 ```sudo ufw enable```\
-```sudo ufw allow 'Apache Full'```\
+```sudo ufw allow 'Apache Full'```
 #### Step 2.1: Check firewall status
 ```sudo ufw status```
 #### Step 3: Get SSL certificate
