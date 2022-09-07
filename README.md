@@ -207,3 +207,15 @@ https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databa
 ```sudo chmod o+r```\
 ```sudo chmod o+w```
 ```sudo chmod o+x```
+### Additional Step 5: Remove unwanted/old kernel
+https://askubuntu.com/questions/345588/what-is-the-safest-way-to-clean-up-boot-partition
+#### Step 1: Check for current version
+```uname -r```
+#### Step 2: List all kernals images
+```dpkg --list 'linux-image*' | grep ^ii```
+#### Step 3: Remove unwanted linux image
+```sudo apt-get remove linux-image-VERSION```
+#### Step 4: Remove unwanted packages
+```sudo apt-get autoremove```
+#### Step 5: Update grub
+```sudo update-grub```
