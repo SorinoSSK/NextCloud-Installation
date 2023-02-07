@@ -219,3 +219,9 @@ https://askubuntu.com/questions/345588/what-is-the-safest-way-to-clean-up-boot-p
 ```sudo apt-get autoremove```
 #### Step 5: Update grub
 ```sudo update-grub```
+### Additional Step 6: Update missing database using occ command
+#### Step 1: change directory to nextcloud root directory
+```cd /var/www/nextcloud```
+#### Step 2: execute command
+```sudo -u www-data php occ db:add-missing-indices```
+
