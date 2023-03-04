@@ -224,4 +224,27 @@ https://askubuntu.com/questions/345588/what-is-the-safest-way-to-clean-up-boot-p
 ```cd /var/www/nextcloud```
 #### Step 2: execute command
 ```sudo -u www-data php occ db:add-missing-indices```
+### Additional Step 6: Upgrade php version
+https://www.reddit.com/r/NextCloud/comments/v5k3eq/php_update_74_81/
+#### Step 1: Install new version of php
+```
+sudo apt install libapache2-mod-php8.1 php8.1 php8.1-gmp php8.1-bcmath php8.1-gd php8.1-mysql php8.1-curl php8.1-mbstring php8.1-intl php8.1-imagick php8.1-xml php8.1-zip php8.1-fpm php8.1-redis php8.1-fileinfo php8.1-apcu
+```
+#### Step 2: Dismount old version of php
+```
+sudo a2dismod php7.4
+```
+#### Step 3: Mount new version of php
+```
+sudo a2enmod php8.1
+```
+#### Step 4: Modify php.ini file
+```
+sudo gedit /etc/php/8.1/apache2/php.ini
+```
+#### Step 5: Restart apache2
+```
+sudo systemctl restart apache2
+
+```
 
