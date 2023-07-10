@@ -3,7 +3,7 @@ https://www.youtube.com/watch?v=2OsNGj2n2zc \
 All credits should be given to their respective creator. This is just a compilation guide for my own nextcloud installation.
 ### Step 1 Missing repositories
 - Adding repositories for php
-- Note: install only php7.4 or else php 8.0 will also be installed during apt-get update.\
+- Note: install only php7.4 or else a newer version of php will also be installed during apt-get update.\
 ```sudo add-apt-repository ppa:ondrej/php -y```
 #### Step 1 - others:
 - Purge php if any other version is installed\
@@ -20,10 +20,10 @@ All credits should be given to their respective creator. This is just a compilat
 ### Step 3 Download Nextcloud
 #### Step 3.1
 - Go to https://nextcloud.com/install/
-- Under **ARCHIVE FILE**, right click and get link from the download file
+- Under **ARCHIVE FILE**, right click and copy the link from the download file
 ### Step 3.2
 - Download nextcloud\
-```wget **URL**```
+```wget [URL]```
 #### Step 3 - others
 - Check if wget is installed\
 ```which wget```
@@ -77,7 +77,7 @@ All credits should be given to their respective creator. This is just a compilat
 - Check if unzip is installed\
 ```which unzip```
 - Unzip nextcloud download\
-```unzip nextcloud-**nexcloud version**.zip```
+```unzip nextcloud-[nexcloud version].zip```
 - Removev zip file\
 ```rm nextcloud-**nexcloud version**.zip```
 - Check if file is unzipped\
@@ -136,29 +136,31 @@ https://www.simplified.guide/linux/disk-mount
 ```blkid /dev/sda```
 - it could be sdb, sdb1, sdc, etc... So, check this.
 #### Step 3 Make a directory to mount the drive to
-```mkdir \media\**your user**\**A folder name**```
+```mkdir \media\[your user]\[A folder name]```
 #### Step 4 Mount partition or disk
-```sudo mount -t ext4 /dev/sda **The directory you just created**```
+```sudo mount -t ext4 /dev/sda [The directory you just created]```
 #### Step 5 Check if successfully mounted
 ```df -h```
+***
 ### Additional Steps 2: Mounting external drive using UUID
 #### Step 1 Check for drive UUID
 ```sudo blkid```
 #### Step 2 create directory or folder
-```sudo mkdir /media/**Your username**/**Your file name**```\
+```sudo mkdir /media/[Your username]/[Your file name]```\
 or anywhere else
 #### Step 3 Access fstab and modify
 ```sudo gedit /etc/fstab```
 #### Step 4 Insert details of your harddisk
-```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** ext4 defaults,user,auto  0 1```\
+```UUID=[Your Harddisk UUID]  /media/[Your username]/[Your file name] ext4 defaults,user,auto  0 1```\
 if your drive contains executable files, add in exec to prevent permission denied.\
-```UUID=**Your Harddisk UUID**  /media/**Your username**/**Your file name** ext4 defaults,user,auto,exec  0 1```\
+```UUID=[Your Harddisk UUID]  /media/[Your username]/[Your file name] ext4 defaults,user,auto,exec  0 1```\
+***
 ### Additional Step 3: Exporting and Importing MariaDB
 https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-in-mysql-or-mariadb
 #### Step 1: Exporting database
 - Type the following the in console where\
 1) username is the username of the user that logs into database e.g. "nextcloud" from step 4.3
-2) basebase_name is the name of the database you want to export e.g. "nextcloud" from step 4.3
+2) database_name is the name of the database you want to export e.g. "nextcloud" from step 4.3
 3) data-dump.sql Can be any name given.
 ```mysqldump -u username -p database_name > data-dump.sql```
 #### Step 1.1: Check if data-dump is created
@@ -167,15 +169,16 @@ https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databa
 - Enter SQL as root
 ```sudo mariadb```
 - Create the database
-```CREATE DATABASE **new database name**```
+```CREATE DATABASE [new database name]```
 - Follow Step 4.3 to provide all privileges again.
 - Exit the database
 ```exit```
 - Import the data-dump.sql where\
 1) username is the username of the user that logs into database e.g. "nextcloud" from step 4.3
 2) basebase_name is the name of the database you want to export e.g. "nextcloud" from step 4.3
-3) data-dump.sql The name given previously together with it's directory. E.g. "/home/**username**/Downloads/data-dump.sql"
+3) data-dump.sql The name given previously together with it's directory. E.g. "/home/[username]/Downloads/data-dump.sql"
 ```-u username -p new_database < data-dump.sql```
+***
 ### Additional Step 4: Create certbot with let's encrypt
 #### Step 1: Install Certbot
 ```sudo apt update```\
@@ -189,7 +192,7 @@ https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databa
 #### Step 2.1: Check firewall status
 ```sudo ufw status```
 #### Step 3: Get SSL certificate
-```sudo certbot --apache -d **YourDomainName.com** -d YourDomainName.com```
+```sudo certbot --apache -d [YourDomainName.com] -d [YourDomainName.com]```
 #### Step 3.1: Verify Certbot
 ```sudo systemctl status certbot.timer```
 #### Step 3.2: Perform dry run
@@ -207,6 +210,7 @@ https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databa
 ```sudo chmod o+r```\
 ```sudo chmod o+w```
 ```sudo chmod o+x```
+***
 ### Additional Step 5: Remove unwanted/old kernel
 https://askubuntu.com/questions/345588/what-is-the-safest-way-to-clean-up-boot-partition
 #### Step 1: Check for current version
@@ -219,12 +223,14 @@ https://askubuntu.com/questions/345588/what-is-the-safest-way-to-clean-up-boot-p
 ```sudo apt-get autoremove```
 #### Step 5: Update grub
 ```sudo update-grub```
+***
 ### Additional Step 6: Update missing database using occ command
 #### Step 1: change directory to nextcloud root directory
 ```cd /var/www/nextcloud```
 #### Step 2: execute command
 ```sudo -u www-data php occ db:add-missing-indices```
-### Additional Step 6: Upgrade php version
+***
+### Additional Step 7: Upgrade php version
 https://www.reddit.com/r/NextCloud/comments/v5k3eq/php_update_74_81/
 #### Step 1: Install new version of php
 ```
@@ -245,6 +251,48 @@ sudo gedit /etc/php/8.1/apache2/php.ini
 #### Step 5: Restart apache2
 ```
 sudo systemctl restart apache2
+```
+***
+### Additional Step 8: Automatically Backup nextlcloud
+https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html
+#### Step 1: Install rsync
+```
+sudo apt-get install rsync
+```
+#### Step 2: Create a script
+```
+#!/bin/bash
 
+folder_root="your_2nd_drive_root_path"
+folder_data_path="your_2nd_drive_data_path"
+folder_main_path="your_2nd_drive_nextcloud_main_path"
+
+cd /var/www/nextcloud
+sudo -u www-data php occ maintenance:mode --on
+
+if [[ ! -e $folder_data_path ]]; then
+    mkdir -p $folder_data_path
+    echo "Created folder in $folder_data_path"
+fi
+rsync -Aavx --delete [your_source_drive_data_path] $folder_data_path
+echo "Completed backing up data file to $folder_data_path"
+
+if [[ ! -e $folder_main_path ]]; then
+    mkdir -p $folder_main_path
+    echo "Created folder in $folder_main_path"
+fi
+rsync -Aavx --delete /var/www/nextcloud/ $folder_main_path
+echo "Completed backing up data file to $folder_main_path"
+
+mysqldump --single-transaction -u [UserID] -p[Password] [Database Name] > $folder_root/nextcloud_sql.bk
+
+now="$(date +'%Y-%m-%d')"
+echo "Nextcloud backup on $now" >> $folder_root/logs.txt
+sudo -u www-data php occ maintenance:mode --off
+```
+#### Step 3: Insert into crontab
+https://phoenixnap.com/kb/set-up-cron-job-linux
+```
+crontab -e
 ```
 
