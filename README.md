@@ -492,7 +492,7 @@ a b c d e /directory/command output
 ```
 crontab -l
 ```
-
+***
 ### Additional Step 9: Setup redis-server for transactional file locking
 1. https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04
 2. 
@@ -555,7 +555,7 @@ sudo gedit /var/www/nextcloud/config/config.php
       ),
 ...
 ```
-
+***
 #### Additional Step 10: Set HSTS to expire in 6 month
 ##### Step 1 - Open apache config file
 ```
