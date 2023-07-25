@@ -20,6 +20,7 @@ All credits should be given to their respective creator. This is just a compilat
 |13 |[crontab job](#step-3-insert-into-crontab)                                                   |
 |14 |[Setup redis-server and improve file locking](#additional-step-9-setup-redis-server-for-transactional-file-locking) |
 |15 |[Setup HSTS](#additional-step-10-set-hsts-to-expire-in-6-month)                              |
+|16 |[Setup Collabora Online](#additional-step-11-setup-collabora-online)                         |
 
 ## Nextcloud Installation
 ### Step 1: Preperation
@@ -569,3 +570,111 @@ Header always set Strict-Transport-Security "max-age=15552000"
 ```
 sudo systemctl restart apache2
 ```
+***
+#### Additional Step 11: Setup Collabora Online
+https://www.collaboraoffice.com/code/linux-packages/  
+https://docs.nextcloud.com/server/latest/admin_manual/office/example-ubuntu.html
+##### Step 1 - Import signing keys
+```
+cd /usr/share/keyrings
+```
+```
+sudo wget https://collaboraoffice.com/downloads/gpg/collaboraonline-release-keyring.gpg
+```
+
+##### Step 2 - Add CODE package repositories
+```
+sudo nano /etc/apt/sources.list.d/collaboraonline.sources
+```
+Copy and paste the following into the opened file:
+```
+Types: deb
+URIs: https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-deb
+Suites: ./
+Signed-By: /usr/share/keyrings/collaboraonline-release-keyring.gpg
+```
+##### Step 3 - Install packages
+```
+sudo apt update && sudo apt install coolwsd code-brand
+```
+##### Step 4 - Restart coolwsd
+```
+sudo systemctl restart coolwsd
+```
+##### Step 5 - Configuration
+```
+sudo coolconfig set ssl.enable false
+```
+```
+sudo coolconfig set ssl.termination true
+```
+```
+sudo coolconfig set storage.wopi.host nextcloud.example.com
+```
+Modify **nextcloud.example.com** to your new subdomain.  
+The domain should be different from your nextcloud domain.
+```
+sudo systemctl restart coolwsd
+```
+```
+systemctl status coolwsd
+```
+##### Step 6 - Configure reverseProxy
+```
+sudo nano /etc/apache2/sites-enabled/[Any Name].conf
+```
+Paste the following into the file opened above. Modify [Your Domain] to your domain.
+```
+<VirtualHost *:80>
+    ServerName [Your Domain]
+	ServerAlias www.[Your Domain]
+        
+	AllowEncodedSlashes NoDecode
+	ProxyPreserveHost On
+
+
+	# static html, js, images, etc. served from coolwsd
+	# browser is the client part of Collabora Online
+	ProxyPass           /browser http://127.0.0.1:9980/browser retry=0
+	ProxyPassReverse    /browser http://127.0.0.1:9980/browser
+
+
+	# WOPI discovery URL
+	ProxyPass           /hosting/discovery http://127.0.0.1:9980/hosting/discovery retry=0
+	ProxyPassReverse    /hosting/discovery http://127.0.0.1:9980/hosting/discovery
+
+
+	# Capabilities
+	ProxyPass           /hosting/capabilities http://127.0.0.1:9980/hosting/capabilities retry=0
+	ProxyPassReverse    /hosting/capabilities http://127.0.0.1:9980/hosting/capabilities
+
+
+	# Main websocket
+	ProxyPassMatch      "/cool/(.*)/ws$"      ws://127.0.0.1:9980/cool/$1/ws nocanon
+
+
+	# Admin Console websocket
+	ProxyPass           /cool/adminws ws://127.0.0.1:9980/cool/adminws
+
+
+	# Download as, Fullscreen presentation and Image upload operations
+	ProxyPass           /cool http://127.0.0.1:9980/cool
+	ProxyPassReverse    /cool http://127.0.0.1:9980/cool
+	# Compatibility with integrations that use the /lool/convert-to endpoint
+	ProxyPass           /lool http://127.0.0.1:9980/cool
+	ProxyPassReverse    /lool http://127.0.0.1:9980/cool
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =[Your Domain] [OR]
+RewriteCond %{SERVER_NAME} =www.[Your Domain]
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
+```
+
+##### Step 7 - Add collebora into your nextcloud
+1. Ensure that Nextcloud Office is installed  
+![Alt text](/images/NCOffice_App.jpg)  
+2. Navigate to **Nextcloud** office under the **Administration**
+![Alt text](/images/NC_App.jpg)  
+3. Select **User your own server**
+4. Enter the domain of your collabora and click on **Save**
+5. You may or may not **Disable certificate verification (insecure)**
