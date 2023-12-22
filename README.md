@@ -414,6 +414,10 @@ sudo gedit /etc/php/8.1/apache2/php.ini
 ```
 sudo systemctl restart apache2
 ```
+#### Step 6 - Remove old php-fpm:
+```
+sudo apt-get autoremove --purge php8.0-fpm
+```
 ***
 ### Additional Step 8: Automatically Backup nextlcloud
 https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html  
