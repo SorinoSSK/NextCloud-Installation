@@ -122,7 +122,7 @@ sudo systemctl start mariadb
 #### Step 5.1:
 - Install all dependencies  
 ```
-sudo apt install php7.4 php7.4-apcu php7.4-bcmath php7.4-cli php7.4-common php7.4-curl php7.4-gd php7.4-gmp php7.4-imagick php7.4-intl php7.4-mbstring php7.4-mysql php7.4-zip php7.4-xml
+sudo apt install php7.4 php7.4-apcu php7.4-bcmath php7.4-cli php7.4-common php7.4-curl php7.4-gd php7.4-gmp php7.4-imagick php7.4-intl php7.4-mbstring php7.4-mysql php7.4-zip php7.4-xml php7.4-memcached
 ```
 #### Step 5.2:
 - Check status of apache2  
@@ -192,7 +192,7 @@ sudo gedit /etc/php/7.4/apache2/php.ini
 4) post_max_size
 5) date.timezone = Asia/Singapore
 6) opcache.enable
-7) opcache.interned_srings_buffer
+7) opcache.interned_strings_buffer
 8) opcahce.max_accelerated_files
 9) opcache.memory_consumption
 10) opcache.save_comments
@@ -396,7 +396,7 @@ sudo -u www-data php occ db:add-missing-indices
 https://www.reddit.com/r/NextCloud/comments/v5k3eq/php_update_74_81/
 #### Step 1 - Install new version of php:
 ```
-sudo apt install libapache2-mod-php8.1 php8.1 php8.1-gmp php8.1-bcmath php8.1-gd php8.1-mysql php8.1-curl php8.1-mbstring php8.1-intl php8.1-imagick php8.1-xml php8.1-zip php8.1-fpm php8.1-redis php8.1-fileinfo php8.1-apcu
+sudo apt install libapache2-mod-php8.1 php8.1 php8.1-gmp php8.1-bcmath php8.1-gd php8.1-mysql php8.1-curl php8.1-mbstring php8.1-intl php8.1-imagick php8.1-xml php8.1-zip php8.1-fpm php8.1-redis php8.1-fileinfo php8.1-apcu php8.1-memcached
 ```
 #### Step 2 - Dismount old version of php:
 ```
