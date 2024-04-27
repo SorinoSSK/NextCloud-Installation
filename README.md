@@ -682,3 +682,13 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 3. Select **User your own server**
 4. Enter the domain of your collabora and click on **Save**
 5. You may or may not **Disable certificate verification (insecure)**
+#### Additional Step 12: Enable APCu
+#### Step 1 - Add "apc.enable_cli=1"
+##### Step 1.1 - open apcu.ini
+```
+sudo gedit /etc/php/(php version)/mods-available/apcu.ini
+```
+##### Step 1.2 - paste the following into apcu.ini
+```
+apc.enable_cli=1
+```
