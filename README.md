@@ -678,6 +678,15 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 sudo a2enmod proxy
 ```
 ```
+sudo a2enmod proxy_http
+```
+```
+sudo a2enmod proxy_balancer
+```
+```
+sudo a2enmod lbmethod_byrequests
+```
+```
 sudo systemctl restart apache2
 ```
 ##### Step 8 - Add collebora into your nextcloud
