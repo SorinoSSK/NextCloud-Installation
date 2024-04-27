@@ -673,8 +673,14 @@ RewriteCond %{SERVER_NAME} =www.[Your Domain]
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
-
-##### Step 7 - Add collebora into your nextcloud
+##### Step 7 - Enable proxy and restart apache2
+```
+sudo a2enmod proxy
+```
+```
+sudo systemctl restart apache2
+```
+##### Step 8 - Add collebora into your nextcloud
 1. Ensure that Nextcloud Office is installed  
 ![Alt text](/images/NCOffice_App.jpg)  
 2. Navigate to **Nextcloud** office under the **Administration**
