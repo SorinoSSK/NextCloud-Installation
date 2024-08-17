@@ -89,6 +89,9 @@ sudo mysql_secure_installation
 ```
 sudo mariadb
 ```
+```
+docker exec -it <MariaDB Container> mariadb --user root -p<MariaDB Root Password>
+```
 - Create database  
 ```
 CREATE DATABASE nextcloud;
